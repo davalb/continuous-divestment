@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, InputGroup, Table } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, InputGroup, Table, Col } from 'react-bootstrap';
 
 Number.prototype.format = function(n, x) {
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
@@ -99,45 +99,67 @@ const FormExample = React.createClass({
     return (
       <div>
         <div className="col-md-6 col-md-offset-3 col-xs-12">
-          <form>
+          <form horizontal>
             <FormGroup
               controlId="formBasicText"
             >
-              <ControlLabel>Asset Balance</ControlLabel>
-              <FormControl
-                type="text"
-                name="assetBalance"
-                value={this.state.assetBalance}
-                placeholder="Enter number"
-                onChange={this.handleChange}
-              />
-              <ControlLabel>Asset Price</ControlLabel>
-              <FormControl
-                type="text"
-                name="assetPrice"
-                value={this.state.assetPrice}
-                placeholder="Enter number"
-                onChange={this.handleChange}
-              />
-              <ControlLabel>Sales Of Asset Per Doubling</ControlLabel>
-              <InputGroup>
+              <Col componentClass={ControlLabel} sm={6}>
+                Asset Balance
+              </Col>
+              <Col sm={6}>
                 <FormControl
-                  type="number"
-                  name="salesPerPeriod"
-                  value={this.state.salesPerPeriod}
+                  type="text"
+                  name="assetBalance"
+                  value={this.state.assetBalance}
                   placeholder="Enter number"
                   onChange={this.handleChange}
                 />
-                <InputGroup.Addon>%</InputGroup.Addon>
-              </InputGroup>
-              <ControlLabel>Fiat Balance at Start (optional)</ControlLabel>
-              <FormControl
-                type="text"
-                name="fiatBalance"
-                value={this.state.fiatBalance}
-                placeholder="Enter number"
-                onChange={this.handleChange}
-              />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={6}>
+                Asset Price
+              </Col>
+              <Col sm={6}>
+                <FormControl
+                  type="text"
+                  name="assetPrice"
+                  value={this.state.assetPrice}
+                  placeholder="Enter number"
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={6}>
+                Sales Of Asset Per Doubling
+              </Col>
+              <Col sm={6}>
+                <InputGroup>
+                  <FormControl
+                    type="number"
+                    name="salesPerPeriod"
+                    value={this.state.salesPerPeriod}
+                    placeholder="Enter number"
+                    onChange={this.handleChange}
+                  />
+                  <InputGroup.Addon>%</InputGroup.Addon>
+                </InputGroup>
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={6}>
+                Fiat Balance at Start (optional)
+              </Col>
+              <Col sm={6}>
+                <FormControl
+                  type="text"
+                  name="fiatBalance"
+                  value={this.state.fiatBalance}
+                  placeholder="Enter number"
+                  onChange={this.handleChange}
+                />
+              </Col>
             </FormGroup>
           </form>
         </div>
