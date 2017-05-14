@@ -130,6 +130,18 @@ const FormExample = React.createClass({
           </form>
         </div>
         <div className="col-xs-12 mt40">
+          <p>
+            The following table shows you the development of an asset (e.g. a crypto-currency) over 10 doublings.
+            The first row shows the value of the asset a the start of the projection: 
+            {this.assetBalanceForPeriod(0).format(2) } units of the asset for a price of {this.assetPriceForPeriod(0).format(2)} result in a asset worth of {startAssetWorth.format(2)}
+            &nbsp; You can see the development of your portfolio by entering your asset balance and asset price into the input fields above.
+          </p>
+          <p>
+            By entering a value between 0 and 100 into the "Sales Of Asset Per Doubling" field, you get additional information on asset sales per doubling, cumulative asset sales and portfolio worth.
+            Using the optional "Fiat Balance at start" field, lets you see the development of your asset / fiat ratio (asset exposure).
+          </p>
+        </div>
+        <div className="col-xs-12 mt40">
           <Table striped bordered condensed hover>
             <thead>
               <tr>
