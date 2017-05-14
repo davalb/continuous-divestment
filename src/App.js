@@ -11,7 +11,7 @@ const FormExample = React.createClass({
     return {
       assetBalance: 10,
       assetPrice: 100,
-      fiatBalance: 1000,
+      fiatBalance: 0,
       salesPerPeriod: 0,
       periods: 10,
     };
@@ -71,16 +71,28 @@ const FormExample = React.createClass({
       lis.push(
         <tr>
           <td>{i}</td>
-          <td className="text-right">{this.assetPriceForPeriod(i)}</td>
           <td className="text-right">{this.assetBalanceForPeriod(i).format(5) }</td>
+          <td className="text-right">{this.assetPriceForPeriod(i)}</td>
           <td className="text-right">{assetWorth.format(2)}</td>
+          {this.state.salesPerPeriod > 0 &&
           <td className="text-right">{this.assetSaleForPeriod(i).format(5)}</td>
+          }
+          {this.state.salesPerPeriod > 0 &&
           <td className="text-right">{assetSaleWorth.format(2)}</td>
+          }
+          {this.state.salesPerPeriod > 0 &&
           <td className="text-right">{this.assetSoldForPeriod(i).format(5)}</td>
+          }
+          {this.state.fiatBalance > 0 &&
           <td className="text-right">{fiatBalance.format(2)}</td>
+          }
+          {this.state.fiatBalance > 0 &&
           <td className="text-right">{(assetWorth / fiatBalance).format(5)}</td>
+          }
+          {this.state.salesPerPeriod > 0 &&
           <td className="text-right">{(fiatBalance + assetWorth).format(2)}</td>
-          <td className="text-right">{(((fiatBalance + assetWorth) / (this.state.fiatBalance + startAssetWorth) * 100)).format(0)} %</td>
+          }
+          <td className="text-right">{(((fiatBalance + assetWorth) / (this.state.fiatBalance + startAssetWorth) * 100) - 100).format(0)} %</td>
         </tr>
       );
     }
@@ -107,15 +119,7 @@ const FormExample = React.createClass({
                 placeholder="Enter number"
                 onChange={this.handleChange}
               />
-              <ControlLabel>Fiat Balance</ControlLabel>
-              <FormControl
-                type="text"
-                name="fiatBalance"
-                value={this.state.fiatBalance}
-                placeholder="Enter number"
-                onChange={this.handleChange}
-              />
-              <ControlLabel>Sales Of Asset Per Period</ControlLabel>
+              <ControlLabel>Sales Of Asset Per Doubling</ControlLabel>
               <InputGroup>
                 <FormControl
                   type="number"
@@ -126,6 +130,14 @@ const FormExample = React.createClass({
                 />
                 <InputGroup.Addon>%</InputGroup.Addon>
               </InputGroup>
+              <ControlLabel>Fiat Balance at Start (optional)</ControlLabel>
+              <FormControl
+                type="text"
+                name="fiatBalance"
+                value={this.state.fiatBalance}
+                placeholder="Enter number"
+                onChange={this.handleChange}
+              />
             </FormGroup>
           </form>
         </div>
@@ -146,15 +158,27 @@ const FormExample = React.createClass({
             <thead>
               <tr>
                 <th>Period</th>
-                <th>Price</th>
                 <th>Asset Balance</th>
+                <th>Price</th>
                 <th>Asset Worth</th>
+                {this.state.salesPerPeriod > 0 &&
                 <th>Asset Sale</th>
+                }
+                {this.state.salesPerPeriod > 0 &&
                 <th>Asset Sale Worth</th>
+                }
+                {this.state.salesPerPeriod > 0 &&
                 <th>Asset Sold</th>
+                }
+                {this.state.fiatBalance > 0 &&
                 <th>Fiat Balance</th>
+                }
+                {this.state.fiatBalance > 0 &&
                 <th>Asset / Fiat Ratio</th>
+                }
+                {this.state.salesPerPeriod > 0 &&
                 <th>Portfolio Worth</th>
+                }
                 <th>Portfolio Increase</th>
               </tr>
             </thead>
