@@ -72,7 +72,7 @@ const FormExample = React.createClass({
         <tr>
           <td>{i}</td>
           <td className="text-right">{this.assetBalanceForPeriod(i).format(5) }</td>
-          <td className="text-right">{this.assetPriceForPeriod(i)}</td>
+          <td className="text-right">{this.assetPriceForPeriod(i).format(0)}</td>
           <td className="text-right">{assetWorth.format(2)}</td>
           {this.state.salesPerPeriod > 0 &&
           <td className="text-right">{this.assetSaleForPeriod(i).format(5)}</td>
