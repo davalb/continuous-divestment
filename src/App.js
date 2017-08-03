@@ -59,6 +59,10 @@ const FormExample = React.createClass({
     return this.state.assetBalance - this.assetBalanceForPeriod(period)
   },
 
+  portfolioIncrease(fiatBalance, period) {
+    return (((fiatBalance + this.assetWorthForPeriod(period)) / (this.state.fiatBalance + this.assetWorthForPeriod(0)) * 100) - 100)
+  },
+
   render() {
     var lis = [];
 
@@ -92,7 +96,7 @@ const FormExample = React.createClass({
           {this.state.salesPerPeriod > 0 &&
           <td className="text-right">{(fiatBalance + assetWorth).format(2)}</td>
           }
-          <td className="text-right">{(((fiatBalance + assetWorth) / (this.state.fiatBalance + startAssetWorth) * 100) - 100).format(0)} %</td>
+          <td className="text-right">{this.portfolioIncrease(fiatBalance, i).format(0)} %</td>
         </tr>
       );
     }
