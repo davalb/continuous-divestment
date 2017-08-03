@@ -19,11 +19,19 @@ const FormExample = React.createClass({
 
   handleChange(e) {
     const target = e.target;
-    const value = parseFloat(target.value);
     const name = target.name;
-    this.setState({
-      [name]: value
-    });
+    let val = parseFloat(target.value);
+    if (isNaN(val)) {
+      this.setState({
+        [name]: 0
+      });
+    } else {
+      if (val) {
+        this.setState({
+          [name]: val
+        });
+      }
+    }
   },
 
   salesPerPeriodAsDecimal() {
@@ -60,7 +68,12 @@ const FormExample = React.createClass({
   },
 
   portfolioIncrease(fiatBalance, period) {
-    return (((fiatBalance + this.assetWorthForPeriod(period)) / (this.state.fiatBalance + this.assetWorthForPeriod(0)) * 100) - 100)
+    if(this.assetWorthForPeriod(period) > 0) {
+      return (((fiatBalance + this.assetWorthForPeriod(period)) / (this.state.fiatBalance + this.assetWorthForPeriod(0)) * 100) - 100)
+    }
+    else {
+      return 0;
+    }
   },
 
   render() {
