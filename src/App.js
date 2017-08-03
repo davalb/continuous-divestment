@@ -165,7 +165,7 @@ const FormExample = React.createClass({
         </div>
         <div className="col-xs-12 mt40">
           <p>
-            The following table shows you the development of an asset (e.g. a crypto-currency) over 10 doublings.
+            The following table shows you the development of an asset (e.g. a cryptocurrency) over 10 doublings.
             The first row shows the value of the asset a the start of the projection: 
             {this.assetBalanceForPeriod(0).format(2) } units of the asset for a price of {this.assetPriceForPeriod(0).format(2)} result in a asset worth of {startAssetWorth.format(2)}
             &nbsp; You can see the development of your portfolio by entering your asset balance and asset price into the input fields above.
